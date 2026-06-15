@@ -1,0 +1,4 @@
+   A
+  ABA
+ ABCBA
+ABCDCBA
