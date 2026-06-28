@@ -1,2 +1,0 @@
-12 15 17 23 43 45 
-Array Sucessfully Sorted

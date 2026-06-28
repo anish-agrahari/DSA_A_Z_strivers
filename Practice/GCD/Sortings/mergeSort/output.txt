@@ -1,2 +1,0 @@
-11 12 32 43 122 222 
-Array Sucessfully Sorted
