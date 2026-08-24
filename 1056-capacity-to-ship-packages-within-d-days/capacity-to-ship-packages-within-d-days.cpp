@@ -1,35 +1,43 @@
 class Solution {
 public:
-    int Count(vector<int> weights, int mid,int n, int days){
-        int count=1;
-        int sum=0;
-        for(int i=0;i<n;i++){
-            if(sum+weights[i]>mid){
-                count++;
-                sum=weights[i];
-                if(count>days) return 1;
-            }
-            else{
-                sum+=weights[i];
-            }
-        }
-        if(count>days) return 1;
-        else return 0;
-    }
     int shipWithinDays(vector<int>& weights, int days) {
-        int n=weights.size();
-        int l=0;
-        int h=0;
-        for(int i=0;i<n;i++){
-            h+=weights[i];
-            l=max(l,weights[i]);
+        int n =  weights.size();
+
+        int lo = weights[0], hi = 0;
+
+        for(int i = 0; i < n; i++){
+            lo = max(lo ,weights[i]);
+            hi += weights[i];
         }
-        while(l<=h){
-            int mid=l+(h-l)/2;
-            int count=Count(weights,mid,n,days);
-            if(count==1) l=mid+1;
-            else h=mid-1;
+
+        int ans = hi;
+
+        while(lo <= hi){
+            int mid = lo + (hi - lo)/2;
+
+            int cap = 0, din = 0;
+
+            for(int i = 0; i < n; i++){
+                cap += weights[i];
+
+                if(cap >= mid) {
+                    din++;
+
+                    if(cap == mid) cap = 0;
+                    else cap = weights[i];
+                }
+            }
+
+            if(cap > 0) din++;
+
+            if(din <= days) {
+                ans = mid;
+                hi = mid - 1;
+            }
+
+            else lo = mid + 1;
         }
-        return l;
+
+        return ans;
     }
 };
