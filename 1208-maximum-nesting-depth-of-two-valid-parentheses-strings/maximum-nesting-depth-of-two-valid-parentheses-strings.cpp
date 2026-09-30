@@ -1,9 +1,18 @@
 class Solution {
 public:
-    vector<int> maxDepthAfterSplit(auto s) {
-        int n=s.size(); vector<int> res(n);
-        for(int i=0; i<n; i++)
-            res[i]=(i^s[i]) &1;
-            return res;
+    vector<int> maxDepthAfterSplit(string seq) {
+        vector<int> ans;
+        int depth = 0;
+
+        for (char c : seq) {
+            if (c == '(') {
+                ans.push_back(depth % 2);
+                depth++;
+            } else {
+                depth--;
+                ans.push_back(depth % 2);
+            }
+        }
+        return ans;
     }
 };
