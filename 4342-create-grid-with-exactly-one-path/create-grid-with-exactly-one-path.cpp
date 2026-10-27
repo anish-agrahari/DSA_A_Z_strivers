@@ -1,10 +1,11 @@
 class Solution {
 public:
-    vector<string> createGrid(int m, int n) {
-        vector<string> res(m - 1, "." + string(n - 1, '#'));
-        
-        res.push_back(string(n, '.'));
-        
-        return res;
+    vector<string> createGrid(int n, int m) {
+        vector<string> grid(n, string(m, '#'));
+        for (int i = 0; i < m; i++)
+            grid[0][i] = '.';
+        for (int i = 0; i < n; i++)
+            grid[i][m - 1] = '.';
+        return grid;
     }
 };
